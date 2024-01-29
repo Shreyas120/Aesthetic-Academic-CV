@@ -1,18 +1,7 @@
 \documentclass[a4paper,11pt]{template}
 %-----------------------------------------------------------
 \usepackage[]{geometry}
-% top=0.55in, left=0.55in, right=0.85in
-% \geometry{
-%   top=0.55in,
-%   bottom=0.15in,
-%   left=0.55in,
-%   right=0.85in,
-%   includeheadfoot,
-%   headsep=0mm,
-%   footskip=0mm
-% }
 
-%%%% MINE
 \geometry{
   top=0.3in,
   bottom=0.25in,
@@ -24,25 +13,10 @@ includeheadfoot,
      headsep=0mm
 %   ,showframe
   }
-  
-  
-%   %%% CDS
-%   \geometry{
-%   top=0.55in,
-% %   bottom=0.1in,
-%   left=0.55in,
-%   right=0.85in,
-% includeheadfoot,
-%   nofoot,
-%   nohead,
-%      headsep=0mm
-% %   ,showframe
-%   }
+
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{hyperref}
-
-
 \usepackage{palatino}
 \usepackage{booktabs}
 
@@ -53,8 +27,7 @@ includeheadfoot,
   % If using pdflatex:
   \usepackage[default]{lato}
 \fi
-\usepackage{fontawesome}
-
+% \usepackage{fontawesome}
 \usepackage{xcolor}
 \fontfamily{SansSerif}
 \usepackage{hyperref}
@@ -67,7 +40,7 @@ includeheadfoot,
 {inputenc}
 
 \usepackage{color}
-\definecolor{boxbg}{rgb}{0.93,0.94,1}
+
 
 \raggedbottom
 
@@ -81,15 +54,19 @@ includeheadfoot,
 \textheight=11.2in
 
 % Change the colours if you want to
-\definecolor{VividPurple}{HTML}{3E0097}
+\definecolor{DarkTurquoiseBlue}{HTML}{008B8B}
+% \definecolor{MidnightBlue}{RGB}{50,150,150}
+\definecolor{MidnightBlue}{RGB}{20,80,150}
+
+
 \definecolor{SlateGrey}{HTML}{2E2E2E}
 \definecolor{LightGrey}{HTML}{666666}
 % \colorlet{name}{black}
-\colorlet{tagline}{VividPurple}
-\colorlet{heading}{VividPurple}
-\colorlet{headingrule}{VividPurple}
+\colorlet{tagline}{MidnightBlue}
+\colorlet{heading}{MidnightBlue}
+\colorlet{headingrule}{MidnightBlue}
+\colorlet{accent}{MidnightBlue}
 % \colorlet{subheading}{PastelRed}
-\colorlet{accent}{VividPurple}
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{LightGrey}
 
@@ -98,8 +75,8 @@ includeheadfoot,
   \color{#1}\global\let\default@color\current@color
 }
 \makeatother
-\definecolor{main}{rgb}{0.0,0.05,0.05}
-\definecolor{primary}{rgb}{0.0,0.16,0.27}
+\definecolor{main}{rgb}{0.0,0.05,0.1}
+\definecolor{primary}{rgb}{0.0,0.2,0.4}
 
 \AtBeginDocument{\globalcolor{main}}
 \newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
@@ -110,31 +87,19 @@ includeheadfoot,
 
 \usepackage{textcomp}
 
-
-
 \begin{document}
-\name{John Doe}
-\tagline{Biological Computation Engineering | Neuroscience | University of Antarctica}
+\name{Shreyas Jha}
 \personalinfo{
-    \email{humans@india.com}
-    \linkedin{myLinkedinRocks}
-    \github{github.com/myGithub}
-    \homepage{myGithub.github.io}
+    \email{shreyasj@cmu.edu}
+    \linkedin{\href{https://linkedin.com/in/shreyasjha}{in/shreyasjha}}
+    \github{\href{https://github.com/Shreyas120}{Shreyas120}}
+    \phone{\href{tel:+14126262791}{(412) 626-2791}}
 }
 \makecvheader
 
 
 \input{sections/education}
-\input{sections/achievements.tex}
-\input{sections/publications}
-
-\input{sections/internships}
-\input{sections/researchProjects}
-
 \input{sections/skills.tex}
-
-\input{sections/extracurrics.tex}
-
-
-
+\input{sections/experience}
+\input{sections/projects}
 \end{document}

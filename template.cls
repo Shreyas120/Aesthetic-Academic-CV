@@ -43,7 +43,6 @@
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 \RequirePackage{xparse}
-
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
 \ifxetex
@@ -60,7 +59,7 @@
   \RequirePackage{fontspec}
 \else
   %% v1.3.2 attempts to make ligatures
-  %% copy-paste as normal characters
+  %% copy-paste as normal chacracters
   \RequirePackage{cmap}
   \RequirePackage[utf8]{inputenc}
   \RequirePackage[T1]{fontenc}
@@ -121,13 +120,18 @@
     \urlstyle{same}
   }
 \fi
-
+\usepackage{gensymb}
+\usepackage{ragged2e}
 \RequirePackage{xcolor}
 
 \colorlet{accent}{blue!70!black}
 % \colorlet{date}{blue!70!black}
 \definecolor{date}{rgb}{0.58, 0.60, 0.58}
+\definecolor{dateachieve}{rgb}{0.5, 0.5, 0.5}
 \definecolor{venue}{rgb}{0.29, 0.16 , 0.29}
+
+\definecolor{author}{rgb}{0.09, 0.0 , 0.19}
+
 
 \colorlet{emphasis}{black}
 \colorlet{heading}{black}
@@ -135,6 +139,7 @@
 \colorlet{subheading}{emphasis}
 \colorlet{body}{black!80!white}
 \colorlet{name}{heading}
+
 \colorlet{tagline}{accent}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
@@ -153,7 +158,7 @@
 % \RequirePackage{marginfix}
 
 \setlength{\parindent}{0pt}
-\newcommand{\divider}{\vspace{-2.5mm}\textcolor{body!30}{\rule {\linewidth}{0.6pt}{}}\vspace{2mm}}
+\newcommand{\divider}{\vspace{-2.5mm}\textcolor{body!30}{\rule {\linewidth}{0.6pt}{}}\vspace{1mm}}
 
 \newenvironment{fullwidth}{%
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
@@ -200,8 +205,8 @@
   \csdef{#1}##1{%
     \if@withhyper
       \IfNoValueTF {#3}
-        {\printinfo{\csuse{#1 symbol}}{##1}}%
-        {\printinfo{\csuse{#1 symbol}}{##1}[\csuse{#1 hyperprefix}##1]}%
+        {\printinfo{\csuse{#1 symbol}}{##1 }}%
+        {\printinfo{\csuse{#1 symbol}}{##1 }[\csuse{#1 hyperprefix}##1 ]}%
     \else
       \printinfo{\csuse{#1 symbol}}{##1}%
     \fi%
@@ -239,6 +244,28 @@
   \end{minipage}%
 }
 
+
+\newcommand{\ExternalLink}{%
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+        \begin{scope}[x=1ex, y=1ex]
+            \clip (-0.1,-0.1) 
+                --++ (-0, 1.2) 
+                --++ (0.6, 0) 
+                --++ (0, -0.6) 
+                --++ (0.6, 0) 
+                --++ (0, -1);
+            \path[draw, 
+                line width = 0.5, 
+                rounded corners=0.5] 
+                (0,0) rectangle (1,1);
+        \end{scope}
+        \path[draw, line width = 0.5] (0.5, 0.5) 
+            -- (1, 1);
+        \path[draw, line width = 0.5] (0.6, 1) 
+            -- (1, 1) -- (1, 0.6);
+        }
+    }
+
 \newcommand{\altacv@add@photo@left}[1]{%
   \appto{\altacv@left@photos}{%
     \@makeaphoto{\altacv@photo@diam@left}{#1}\hspace{1ex}%
@@ -270,29 +297,30 @@
 \newcommand{\cvsubsectionfont}{\large\bfseries}
 
 \newcommand{\makecvheader}{%
-
   \begingroup
-    \altacv@left@photos\hfill%
-    \begin{minipage}{
-    \dimexpr\linewidth-\altacv@photos@width}%
-    \raggedright%
-    {\namefont\color{name}\MakeUppercase{\@name}\par}
-    \medskip
-    {\taglinefont\color{tagline}\@tagline\par}
-    \medskip
-    {\personalinfofont\@personalinfo\par}
-    \end{minipage}\hfill%
-    \altacv@right@photos\par%
-  \endgroup\medskip
+    \begin{minipage}[t]{.35\textwidth}{
+    \raggedright}%
+    {\namefont\color{name}\MakeUppercase{\@name} }
+    \end{minipage}%
+    \begin{minipage}[t]{.65\textwidth}
+        \raggedleft
+        \smallskip
+        {\personalinfofont\@personalinfo}
+    \end{minipage}
+    % \medskip
+    % {\taglinefont\color{tagline}\@tagline\par}
+    % \medskip
+  \endgroup
 }
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
 \newcommand{\cvsection}[2][]{%
-  \bigskip%
+%   \medskip
+\vspace{2mm}
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
-  {\color{heading}\cvsectionfont \MakeUppercase{#2}}\\[-1ex]%
-  {\color{headingrule}\rule{\linewidth}{2pt}\par}\medskip
+  {\color{heading}\cvsectionfont \MakeUppercase{#2}}\\[-1.3ex]%
+  {\color{headingrule}\rule{\linewidth}{1.3pt}}\\[0.9ex]%
 }
 
 \newcommand{\cvsubsection}[1]{%
@@ -301,64 +329,127 @@
 }
 
 
-\newcommand{\cvevent}[4]{%
-  {
-    \large\color{emphasis}\textbf{#1} \hfill
-    \ifstrequal{#4}{}{}{
-        \small \href{#4}{\faExternalLink}
-        
+\newcommand{\cvedu}[6]{%
+    {\color{author}\textbf{#3}} \hfill {\textit{#2}}
+    \normalsize
+    % \smallskip
+    \vspace{0.15mm}
+    \\
+    \ifstrequal{#3}{}{}{
+        { {#1}{\hspace{1ex}\small\color{accent} {#6}}} {\color{date} \hfill \textit{{#4}} }    
+        \smallskip 
+        \\
     }
-      
-  }
-  \smallskip\normalsize
-  
+    \ifstrequal{#5}{}{}{
+    {
+        \small
+        \color{venue} {{#5}}
+    }
+    }
+    
+}
+
+
+\newcommand{\cvextra}[5]{%
+    {\color{author}\textbf{#1}:} {#2} \hfill 
+    \ifstrequal{#5}{}{}{
+         \href{#5}{\ExternalLink{}}
+    }
+    % \normalsize
+    % \smallskip \\
+    % \ifstrequal{#3}{}{}{
+    %     {\color{venue} \textit{#3}} {\color{date} \hfill \textit{{#4}} }    
+    %     \smallskip
+    % }
+    
+}
+\makeatletter 
+\newcommand\semiLarge{\@setfontsize\semiHuge{10.5}{10.5}}
+\makeatother
+
+\newcommand{\cvevent}[5]{%
+% #2 is bottom
+  {
+  \semiLarge  \color{emphasis}\textbf{#1} | \normalsize
   \ifstrequal{#2}{}{}{
-  \textbf{\color{accent}#2}}
-   \ifstrequal{#3}{}{}{{
-     \hfill \color{date} \textit{#3}
-   }}
-  \smallskip
+    % \smallskip \\
+     \textbf{\color{accent}#2} \ifstrequal{#4}{}{}{
+        \href{#4}{\ExternalLink{}}
+    }
+    \hfill 
+    \ifstrequal{#3}{}{}{{
+      \color{date} \textit{#3}
+    }}
+  % \smallskip
+  \vspace{0.7mm}
+  }
+    
+    
+  }
+  {
+    \small #5
+  }
+  
   \normalsize
 }
 
 \newcommand{\cvpublication}[4]{%
 
-    {\color{emphasis}\textbf{#1} - {#2}}
+    {\color{author}\textbf{#1} - {#2} }
+    \hfill 
+    % \ifstrequal{#5}{}{}{
+    %      \href{#5}{\ExternalLink}
+    % }\normalsize
     \smallskip\normalsize \\
     {\color{venue} \textit{#3}} {\color{date} \hfill {#4} }
     \smallskip
 
 }
+
+\newcommand{\cvapp}[5]{%
+    
+    
+    {\color{author}\textbf{#1}} {#2} 
+    \hfill 
+    \ifstrequal{#5}{}{}{
+         \href{#5}{\ExternalLink{}}
+    }\normalsize
+    \smallskip\normalsize \\
+    {\color{venue} \textit{#3}} {\color{date} \hfill {#4} }
+    \smallskip
+}
 \newcommand{\cveducation}[4]{%
 %{title}{Location}{Date}{Score}
-  {\large\color{emphasis}#1 \hfill \small \textsc{\textbf{#4}} \par}
-  \smallskip\normalsize
+  {
+  \large\color{emphasis}#1 \hfill \small \textsc{\textbf{#4}} \par}
+  % \smallskip
+  \normalsize
+  
   \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2} \hfill 
+  
   \ifstrequal{#3}{}{}{{
      \hfill \color{date} \textit{~#3}
    }}}
   \medskip\normalsize
 }
 \newcommand{\cvachievement}[3]{%
-  {\large\color{emphasis}#1}
-  \smallskip\normalsize
+ 
+% \smallskip
+\begin{itemize}
+  \item \textbf{#2 \textbf{:} }  #3 \hfill  \textit{{\color{date} #1}}
   
-  \ifstrequal{#2}{}{}{
-  \textbf{\color{accent}#2}}%\par\smallskip} 
-   \ifstrequal{#3}{}{}{{
-     \hfill \color{date} \textit{~#3}
-   }}
-  \smallskip
-  \normalsize
+ \end{itemize}
+
 }
-% \newcommand{\cvachievement}[3]{%
-%   \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
-%   \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
-%   & #3
-%   \end{tabularx}%
-%   \smallskip
-% }
+
+\newcommand{\cvteaching}[3]{%
+ \begin{itemize}
+  \item \textbf{#2 \textbf{:} }  #3 \hfill \textit{{\color{date} #1}}
+  
+ \end{itemize}
+
+}
 
 \newcommand{\cvtag}[1]{%
   \tikz[baseline]\node[anchor=base,draw=body!30,rounded corners,inner xsep=1ex,inner ysep =0.75ex,text height=1.5ex,text depth=.25ex]{#1};

@@ -1,0 +1,68 @@
+
+\cvsection{Notable Projects}
+
+\cvevent{LiDAR-camera extrinsic calibration with semantic labels}{Geometry-based Methods in Vision}{Oct '23 - Dec '23}{https://drive.google.com/file/d/107u6eN8Ph5Tw2Tt8rmudxHoU_6EG9jJ-/view?usp=sharing}
+{    \begin{itemize}
+        \item Implemented a \textbf{real-time targetless calibration} pipeline with GPU optimization using semantic-segmentation labels \& monocular depth.
+        \item Evaluated on KITTI-Odometry to show RMS error of \textbf{0.16\degree} in extrinsics after calibration when initialized with \textbf{\textasciitilde5\degree} rotational error/axis.
+    \end{itemize}}
+\divider
+
+\cvevent{Comparison of odometry front-ends for scan-to-map localization}{SLAM}{Feb '23 - May '23}{https://drive.google.com/file/d/1JJdhwyTIZ5BcIBodWsQw-4t4Mp4lDDOt/view?usp=sharing}
+{    \begin{itemize}
+        \item Evaluated \textbf{KISS-ICP}, \textbf{VIO}, \&, \textbf{RF20} as odometry sources in an indoor localization pipeline; mapped environment using \textbf{HDL Graph SLAM}.
+        \item Compared performance for \textbf{6-DOF pose estimation} by average log-likelihood to GT estimates (from \textbf{NDT}-based scan-to-map matching).
+        
+    \end{itemize}}
+\divider
+
+\cvevent{KendemaBot - robot plays cup-and-ball}{Robot Autonomy}{Feb '23 - May '23}{https://drive.google.com/file/d/1vMIo-oqQD79E6mUg_Kzh1-lsCKQKCOml/view}
+  {  \begin{itemize}
+        \item Learned \textbf{DMPs} with Gaussian basis functions via imitation learning for a \textbf{7-DOF Franka} manipulator to play ball-in-a-cup autonomously.
+        \item Developed an algorithm to estimate the catching position using RGB-D feed to \textbf{generate trajectories} for the with \textbf{closed-loop DMPs}.
+    \end{itemize}}
+\divider
+
+\cvevent{Cloud-based autonomous driving}{Capstone Project • CMU}{Oct '22 - Nov '23}{https://mrsdprojects.ri.cmu.edu/2023teame/74-2/system-implementation/}
+{    \begin{itemize}
+        \item Demonstrated autonomous driving of vehicles with DBW using \textbf{off-board autonomy software} \& infrastructure-based perception sensors.
+        \item Set up the distributed sub-systems with SBCs (Jetson Nano, RPi), sensor interfaces, and, communications; achieved \textbf{millisecond-level clock-synchronization} using NTP and implemented feedback-control on RC-cars using motor ERPM for accurate tracking of motion cues.
+        \item Built a \textbf{sensor fusion} pipeline with inputs from an \textbf{Ackermann} motion model, \textbf{IMU} (Madgwick filter), and perception-based state estimator through an \textbf{UKF} with fixed-lag smoothing; implemented \textbf{Hungarian matching} and experimented with joint probability data association. 
+        \item Developed a real-time \textbf{hybrid-A* planner} with kinodynamic constraints for obstacle avoidance and robust autonomous navigation.
+        \end{itemize}}
+\divider
+
+% \cvevent{Dense SLAM with Point-based Fusion}{SLAM • Carnegie Mellon University }{Mar '23 - Apr '23}{Can add some link here.}
+%     \begin{itemize}
+%         \item Implemented projective ICP and point-based fusion to reconstruct a dense RGB-D scene from 200 image frames 
+%     \end{itemize}
+% \divider
+
+% \cvevent{Optical Character Recognition}{Computer Vision • Carnegie Mellon University }{Nov '22 - Dec '22}{}
+%     \begin{itemize}
+%         \item Developed pipeline for extracting text from images by training a CNN using PyTorch with 97\% accuracy on EMNIST dataset
+%     \end{itemize}
+% \divider
+
+% \cvevent{Spatio-Temporal 3D Reconstruction}{Computer Vision • Carnegie Mellon University }{Oct '22 - Nov '22}{Can add some link here.}
+%     \begin{itemize}
+%         \item Developed perception pipeline for multi-view key point reconstruction of a moving vehicle leveraging geometry-based methods  
+%     \end{itemize}
+% \divider
+
+
+% \cvevent{Multi-view 3D reconstruction (independent projects)}{CMU}{Oct '22 - Oct '23}{}
+% {    \begin{itemize}
+%         % \item Developed software for sparse spatio-temporal 3D reconstruction of a moving vehicle with multi-view keypoints
+%         \item Developed perception pipeline for multi-view key point reconstruction of a moving vehicle leveraging geometry-based methods  
+%         \item Implemented projective ICP and point-based fusion to reconstruct a dense RGB-D scene from 200 image frames 
+%         \item Performed dense 3D reconstruction of arbitrary scenes from multi-view images using SIFT features, openCV, and COLMAP 
+%     \end{itemize}}
+% \divider
+
+\cvevent{Intelligent Picking Gantry Robot}{Flipkart GriD 2.0 Robotics Challenge • KIIT}{Jul '20 - Jan '21}{https://www.igi-global.com/chapter/a-fuzzy-based-intelligent-picking-and-placing-warehouse-robot/309669}
+    {\begin{itemize}
+        \item Devised an \textbf{autonomous pick-and-place} warehouse robot to manipulate payloads of up to 2 kg; integrated autonomy software with ROS.
+        \item Developed the perception stack for \textbf{object detection} and 2D-pose estimation; designed and validated a \textbf{fuzzy-supervisory control} model.
+    \end{itemize}
+}
